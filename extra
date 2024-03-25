@@ -1,0 +1,51 @@
+// const BottomNav = () => {
+//   return <Tab.Navigator initialRouteName='Home' screenOptions={({ route }) => ({
+//     tabBarActiveBackgroundColor: "#5e8df7",
+//     tabBarInactiveBackgroundColor: "#5e8df7",
+//     tabBarIcon: ({ focused, color, size }) => {
+
+//       let iconName;
+
+//       if (route.name === 'Home') {
+//         iconName = focused
+//           ? 'ios-information-circle'
+//           : 'ios-information-circle-outline';
+//       } else if (route.name === 'Settings') {
+//         iconName = focused ? 'ios-list' : 'ios-list-outline';
+//       }
+
+//       // You can return any component that you like here!
+//       return <Ionicons name={iconName} size={size} color={color} />;
+
+//     },
+//     tabBarActiveTintColor: 'tomato',
+//     tabBarInactiveTintColor: 'gray',
+//   })}>
+//     <Tab.Screen options={{
+//       headerShown: false
+//     }} name="Home" component={Home} />
+//     <Tab.Screen name="Appointment" component={Appointment} />
+//     <Tab.Screen name="Payment" component={Payment} />
+//     <Tab.Screen name="DoctorSearch" component={DoctorSearch} />
+//     <Tab.Screen name="Profile" component={Profile} />
+//   </Tab.Navigator>
+// }
+// const DrawerNav = () => {
+//   return <Drawer.Navigator initialRouteName='Home'>
+//     <Drawer.Screen name="Home" component={BottomNav} />
+//   </Drawer.Navigator>
+// }
+
+
+
+<TextInput
+placeholder='Retype your password'
+secureTextEntry={showPassword ? false : true}
+mode='outlined'
+onChangeText={setPassword}
+value={password}
+style={{ width: "90%", marginLeft: "5%", backgroundColor: "#FFF", marginBottom: 20 }}
+contentStyle={{ fontSize: 16 }}
+outlineStyle={{ borderColor: "#fff" }}
+right={showPassword ? <TextInput.Icon icon="eye" onPress={() => setShowPassword(false)} color={"lightgray"} /> : <TextInput.Icon icon="eye-off" onPress={() => setShowPassword(true)} color={"lightgray"} />}
+/>

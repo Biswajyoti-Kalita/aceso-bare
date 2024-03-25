@@ -1,0 +1,49 @@
+{
+  "name": "Aceso",
+  "displayName": "Aceso24x7",
+  "expo": {
+    "name": "aceso",
+    "slug": "aceso",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/aceso.png",
+    "userInterfaceStyle": "light",
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Aceso to access your camera",
+          "microphonePermission": "Allow Aceso to access your microphone",
+          "recordAudioAndroid": true
+        }
+      ]
+    ],
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.app.aceso"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/aceso.png",
+        "backgroundColor": "#ffffff"
+      },
+      "versionCode": 3,
+      "package": "com.app.aceso"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c589f657-6b54-4792-8cb7-2d384c7e1aa7"
+      }
+    },
+    "owner": "sliadmin"
+  }
+}

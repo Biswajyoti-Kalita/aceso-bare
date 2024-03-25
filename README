@@ -1,0 +1,13 @@
+com.app.aceso
+
+
+
+
+To build in expo:
+
+    #need to login first
+    eas login
+
+    #
+    eas build --platform ios
+    eas build --platform android
