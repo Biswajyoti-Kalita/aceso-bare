@@ -1,11 +1,32 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { Avatar } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+import api from '../services/API';
 
 
 const AppointmentCardV2 = ({ appointment, isPrevious = false }) => {
+
+    const navigation = useNavigation();
+
     console.log("appointment card ", { appointment })
     const appointmentStartDate = new Date(appointment.startDateTime);
     const appointmentEndDate = new Date(appointment.endDateTime);
+
+
+    const startVideoCall = async () => {
+
+        const result = await api.getSessionToken({
+            patientId: appointment.patientID,
+            staffId: appointment.appointmentStaffs[0] ? appointment.appointmentStaffs[0].staffId : '',
+            startTime: appointment.startDateTime,
+            endTime: appointment.endDateTime
+        });
+        console.log("start video call result ", result.data);
+        if (result) {
+            navigation.navigate("video-call", result.data);
+        }
+
+    }
 
     return <View style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
         <View style={{ width: 10, backgroundColor: "#5E8DF7", marginTop: 10, marginBottom: 2, borderTopStartRadius: 5, borderTopEndRadius: 5, borderBottomLeftRadius: 5, borderBottomEndRadius: 5 }}></View>
@@ -40,7 +61,7 @@ const AppointmentCardV2 = ({ appointment, isPrevious = false }) => {
                 </View>
                 <View style={{ justifyContent: "center", alignItems: "center" }}>
                     {
-                        !isPrevious && <Avatar.Icon icon={'video'} color={'#FFF'} size={26} style={{ backgroundColor: "#48bd69" }} />
+                        !isPrevious && <Avatar.Icon onTouchEnd={startVideoCall} icon={'video'} color={'#FFF'} size={26} style={{ backgroundColor: "#48bd69" }} />
 
                     }
                 </View>

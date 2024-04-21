@@ -55,7 +55,7 @@ const DoctorAvailabilityTimeSlots = ({ selectedDate, staffID, appointmentDateTim
         const cdate = new Date(selectedDate);
         let hhmm = timeselected.replace("AM", "").replace("PM", "").split(":");
         cdate.setHours(parseInt(hhmm[0]));
-        cdate.setMinutes(hhmm[1]);
+        cdate.setMinutes(hhmm[1], 0, 0);
         console.log("appointmentDateTimeSelected ", cdate);
         appointmentDateTimeSelected(cdate);
     }
@@ -93,7 +93,7 @@ const DoctorAvailabilityTimeSlots = ({ selectedDate, staffID, appointmentDateTim
 
         }
 
-        //console.log("\n\n\n", { array2d })
+        console.log("\n\n\n", { array2d })
         setTimeslots([...array2d]);
 
     }
@@ -112,19 +112,32 @@ const DoctorAvailabilityTimeSlots = ({ selectedDate, staffID, appointmentDateTim
             const days = availabilityData.data.days.find((d => d.dayId == (currentDate.getDay() + 1)));
             console.log(days);
             if (days) {
-                let startDateTime = new Date(selectedDate);
-                let endDateTime = new Date(selectedDate);
+                // let startDateTime = new Date(selectedDate);
+                // let endDateTime = new Date(selectedDate);
 
+                console.log({ selectedDate, currentDate })
                 let dayStartTime = new Date(days.startTime);
                 let dayEndTime = new Date(days.endTime);
 
+                console.log({ dayStartTime, dayEndTime });
+                // startDateTime.setHours(dayStartTime.getHours());
+                // startDateTime.setMinutes(dayStartTime.getMinutes(), 0, 0);
 
-                startDateTime.setHours(dayStartTime.getHours());
-                startDateTime.setMinutes(dayStartTime.getMinutes());
+                // endDateTime.setHours(dayEndTime.getHours());
+                // endDateTime.setMinutes(dayEndTime.getMinutes(), 0, 0);
+                let month = currentDate.getMonth() + 1;
+                let dateString = `${currentDate.getFullYear()}-${month < 10 ? "0" + month : month}-${currentDate.getDate()}`;
+                let timeString1 = dayStartTime.toISOString().substring(10);
+                let timeString2 = dayEndTime.toISOString().substring(10);
+                console.log({ dateString }, currentDate.getDate())
+                let startDateTime = new Date(dateString + timeString1);
+                let endDateTime = new Date(dateString + timeString2);
 
-                endDateTime.setHours(dayEndTime.getHours());
-                endDateTime.setMinutes(dayEndTime.getMinutes());
+                console.log({ startDateTime, endDateTime });
+                // startDateTime.setHours(dayStartTime.getHours(), dayStartTime.getMinutes(), 0, 0);
+                // endDateTime.setDate(dayEndTime.getHours(), dayEndTime.getMinutes(), 0, 0);
 
+                // console.log({ startDateTime, endDateTime });
 
 
                 showSlots(startDateTime, endDateTime, availabilityData.data.unavailable);

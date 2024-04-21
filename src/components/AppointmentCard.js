@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Avatar, Modal, Portal } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+
+import api from '../services/API';
 
 
 const AppointmentCard = ({ appointment }) => {
 
     const [visible, setVisible] = useState(false);
+    const navigation = useNavigation();
 
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
@@ -13,6 +17,21 @@ const AppointmentCard = ({ appointment }) => {
     console.log("appointment card ", { appointment })
     const appointmentStartDate = new Date(appointment.startDateTime);
     const appointmentEndDate = new Date(appointment.endDateTime);
+
+    const startVideoCall = async () => {
+
+        const result = await api.getSessionToken({
+            patientId: appointment.patientID,
+            staffId: appointment.appointmentStaffs[0] ? appointment.appointmentStaffs[0].staffId : '',
+            startTime: appointment.startDateTime,
+            endTime: appointment.endDateTime
+        });
+        console.log("start video call result ", result.data);
+        if (result) {
+            navigation.navigate("video-call", result.data);
+        }
+
+    }
 
     return <>
         <Portal>
@@ -77,7 +96,7 @@ const AppointmentCard = ({ appointment }) => {
             </Modal>
 
         </Portal>
-        <View style={{ width: "100%", marginBottom: 10 }} onTouchEnd={showModal}>
+        <View style={{ width: "100%", marginBottom: 10 }}>
             <View style={{ justifyContent: "flex-start", alignItems: "center", display: "flex", flexDirection: "row" }}>
                 <Avatar.Icon icon={"clock-outline"} size={25} color={'#979CA7'} style={{ backgroundColor: "transparent" }} />
                 <Text>
@@ -85,7 +104,7 @@ const AppointmentCard = ({ appointment }) => {
                 </Text>
             </View>
             <View style={{ backgroundColor: "#F1F5FF", borderRadius: 14, width: "100%", padding: 20, display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                <View style={{}}>
+                <View style={{}} onTouchEnd={showModal}>
                     <Text style={{
                         fontSize: 13,
                         color: "#1D1E25",
@@ -98,7 +117,7 @@ const AppointmentCard = ({ appointment }) => {
                     }}>{appointment.departmentName ? appointment.departmentName : ""}</Text>
                 </View>
                 <View style={{ justifyContent: "center", alignItems: "center" }}>
-                    <Avatar.Icon icon={'video'} color={'#FFF'} size={26} style={{ backgroundColor: "#48bd69" }} />
+                    <Avatar.Icon onTouchEnd={startVideoCall} icon={'video'} color={'#FFF'} size={26} style={{ backgroundColor: "#48bd69" }} />
                 </View>
             </View>
         </View></>;

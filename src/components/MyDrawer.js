@@ -98,7 +98,7 @@ const MyDrawer = ({ showDrawer, onHide }) => {
                                     fontWeight: 400,
                                     color: "#000"
                                 }}
-                                    onPress={() => navigateTo('Home')}
+                                    onPress={() => navigateTo('Appointment')}
 
                                 >Scheduling</Text>
                             </View>
@@ -120,7 +120,7 @@ const MyDrawer = ({ showDrawer, onHide }) => {
                                     fontWeight: 400,
                                     color: "#000"
                                 }}
-                                    onPress={() => navigateTo('Home')}
+                                    onPress={() => navigateTo('Appointment')}
                                 >Telemedicine</Text>
                             </View>
                             <View style={{ display: "flex", flexDirection: "row", padding: 10, paddingLeft: 20, margin: 10 }}>
@@ -130,10 +130,10 @@ const MyDrawer = ({ showDrawer, onHide }) => {
                                     fontWeight: 400,
                                     color: "#000"
                                 }}
-                                    onPress={() => navigateTo('Home')}
+                                    onPress={() => navigateTo('Profile')}
                                 >Profile</Text>
                             </View>
-                            <View style={{ display: "flex", flexDirection: "row", padding: 10, paddingLeft: 20, margin: 10 }}>
+                            <View style={{ display: "none", flexDirection: "row", padding: 10, paddingLeft: 20, margin: 10 }}>
                                 <Avatar.Icon icon={'receipt'} size={35} color='#FFFFFF' style={{ backgroundColor: "#5E8DF7", marginRight: 15 }} />
                                 <Text style={{
                                     fontSize: 24,
@@ -143,7 +143,7 @@ const MyDrawer = ({ showDrawer, onHide }) => {
                                     onPress={() => navigateTo('Home')}
                                 >Order</Text>
                             </View>
-                            <View style={{ display: "flex", flexDirection: "row", padding: 10, paddingLeft: 20, margin: 10 }}>
+                            <View style={{ display: "none", flexDirection: "row", padding: 10, paddingLeft: 20, margin: 10 }}>
                                 <Avatar.Icon icon={'message-text'} size={35} color='#FFFFFF' style={{ backgroundColor: "#5E8DF7", marginRight: 15 }} />
                                 <Text style={{
                                     fontSize: 24,
@@ -153,7 +153,7 @@ const MyDrawer = ({ showDrawer, onHide }) => {
                                     onPress={() => navigateTo('Home')}
                                 >Message</Text>
                             </View>
-                            <View style={{ display: "flex", flexDirection: "row", padding: 10, paddingLeft: 20, margin: 10 }}>
+                            <View style={{ display: "none", flexDirection: "row", padding: 10, paddingLeft: 20, margin: 10 }}>
                                 <Avatar.Icon icon={'bell'} size={35} color='#FFFFFF' style={{ backgroundColor: "#5E8DF7", marginRight: 15 }} />
                                 <Text style={{
                                     fontSize: 24,

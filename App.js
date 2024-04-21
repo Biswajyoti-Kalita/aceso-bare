@@ -36,6 +36,7 @@ import StripePayment from './src/components/StripePayment';
 import ForgotPassword from './src/components/ForgotPassword';
 import WebViewTest from './src/components/WebviewTest';
 import OpenTok from './src/components/OpenTok';
+import VideoCall from './src/components/VideoCall';
 
 
 
@@ -158,15 +159,15 @@ const App = () => {
                     <Stack.Screen options={{ headerShown: false, }} name="provider-details-auth" component={ProviderDetails} />
                     <Stack.Screen options={{ headerShown: false, }} name="appointment-payment-auth" component={AppointmentPayment} />
                     <Stack.Screen options={{ headerShown: false, }} name="confirm-appointment-auth" component={ConfirmAppointment} />
+                    <Stack.Screen options={{ headerShown: true, title: "" }} name="video-call" component={VideoCall} />
                   </Stack.Navigator>
                   :
                   <Stack.Navigator>
                     <Stack.Screen options={{ headerShown: false }} name="find-doctor" component={FindDoctor} />
                     <Stack.Screen options={{ headerShown: false }} name="signin" component={Signin} />
                     <Stack.Screen options={{ headerShown: false }} name="signup" component={Signup} />
-                    {/* <Stack.Screen options={{ headerShown: false }} name="forgot-password" component={ForgotPassword} /> */}
+                    <Stack.Screen options={{ headerShown: false }} name="forgot-password" component={ForgotPassword} />
                     <Stack.Screen options={{ headerShown: false }} name="open-tok" component={OpenTok} />
-                    <Stack.Screen options={{ headerShown: false }} name="forgot-password" component={WebViewTest} />
                     <Stack.Screen options={{ headerShown: false }} name="verify" component={Verify} />
                     <Stack.Screen options={{ headerShown: false }} name="account-verified" component={AccountVerified} />
                     <Stack.Screen options={{ headerShown: false, }} name="provider-details" component={ProviderDetails} />

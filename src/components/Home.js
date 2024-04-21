@@ -321,13 +321,14 @@ const Home = (props) => {
                 dispatch(updateUserFields({ token: userDashboardResult.access_token }))
                 setUser(userDashboardResult.data);
                 const currentDate = new Date();
+                currentDate.setHours(0, 0, 0);
                 const _upcomingAppointments = await api.getPatientAppointments({
                     fromDate: currentDate.toISOString().substring(0, 10),
                     patientIds: currentuser.profile?.id,
                     locationIds: currentuser.profile?.locationID,
                     token: userDashboardResult.access_token
                 });
-
+                console.log({ _upcomingAppointments });
                 if (_upcomingAppointments && _upcomingAppointments.data) {
                     let data = _upcomingAppointments.data;
 

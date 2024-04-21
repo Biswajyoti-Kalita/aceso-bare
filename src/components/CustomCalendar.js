@@ -5,6 +5,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 
 const CalendarItem = ({ date, isSelected, dateSelected }) => {
     const _date = new Date(date);
+    _date.setHours(0, 0, 0, 0);
     return <View style={[{
         width: 50,
         height: 70,

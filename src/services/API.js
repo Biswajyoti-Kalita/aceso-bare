@@ -232,6 +232,21 @@ const api = {
     //console.log('getDoctorDetails res', result);
     return result;
   },
+  getSessionToken: async function (obj) {
+    console.log("getSessionToken");
+    const result = await fetch(BASE_URL + `api/Telehealth/GetTelehealthSession?patientID=${obj.patientId}&staffID=${obj.staffId}&startTime=${obj.startTime}&endTime=${obj.endTime}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+      }
+    })
+      .then(res => res.json())
+      .catch(err => console.log('error => ', err));
+    //console.log('saveAppointment res', result);
+    return result;
+
+  },
   applyPayment: async function (obj) {
     console.log("applyPayment api");
     const result = await fetch(BASE_URL + `api/Payment/ApplyPayment`, {

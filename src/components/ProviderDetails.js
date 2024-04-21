@@ -52,6 +52,9 @@ const ProviderDetails = (props) => {
                 let tempDate1 = new Date(temp[0]);
                 let tempDate2 = new Date(temp[1]);
 
+                tempDate1.setSeconds(0, 0);
+                tempDate2.setSeconds(0, 0);
+
                 console.log("checking if matches with temp 0 or 1 ", { tempDate1, tempDate2, datetime })
 
                 if (tempDate1.toISOString() == datetime.toISOString() || tempDate2.toISOString() == datetime.toISOString()) {
@@ -87,8 +90,8 @@ const ProviderDetails = (props) => {
                 let checkdateNext = new Date(datetime);
                 let checkdatePrev = new Date(datetime);
 
-                checkdateNext.setMinutes(checkdateNext.getMinutes() + 30);
-                checkdatePrev.setMinutes(checkdatePrev.getMinutes() - 30);
+                checkdateNext.setMinutes(checkdateNext.getMinutes() + 30, 0, 0);
+                checkdatePrev.setMinutes(checkdatePrev.getMinutes() - 30, 0, 0);
 
                 console.log({ checkdateNext, checkdatePrev });
                 if (new Date(temp[0]).toISOString() == checkdateNext.toISOString() || new Date(temp[0]).toISOString() == checkdatePrev.toISOString()) {
@@ -185,7 +188,9 @@ const ProviderDetails = (props) => {
         }
 
         setDoctorDetails({ ...details })
-        dateSelected(new Date());
+        let cdate = new Date();
+        cdate.setHours(0, 0, 0, 0);
+        dateSelected(cdate);
     }
 
     useEffect(() => {
