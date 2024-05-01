@@ -127,12 +127,13 @@ const DoctorAvailabilityTimeSlots = ({ selectedDate, staffID, appointmentDateTim
                 // endDateTime.setMinutes(dayEndTime.getMinutes(), 0, 0);
                 let month = currentDate.getMonth() + 1;
                 let dateString = `${currentDate.getFullYear()}-${month < 10 ? "0" + month : month}-${currentDate.getDate()}`;
-                let timeString1 = days.startTime.substring(10);
-                let timeString2 = days.endTime.substring(10);
+                let timeString1 = days.startTime.substring(11).split(":");
+                let timeString2 = days.endTime.substring(11).split(":");
                 console.log({ dateString, timeString1, timeString2 }, currentDate.getDate())
-                let startDateTime = new Date(dateString + timeString1);
-                let endDateTime = new Date(dateString + timeString2);
-
+                //let startDateTime = new Date(dateString + timeString1);
+                //let endDateTime = new Date(dateString + timeString2);
+                let startDateTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(),timeString1[0],timeString1[1])
+                let endDateTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(),timeString2[0],timeString2[1])
                 console.log({ startDateTime, endDateTime });
                 // startDateTime.setHours(dayStartTime.getHours(), dayStartTime.getMinutes(), 0, 0);
                 // endDateTime.setDate(dayEndTime.getHours(), dayEndTime.getMinutes(), 0, 0);
